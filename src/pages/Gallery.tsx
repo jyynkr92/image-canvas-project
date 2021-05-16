@@ -23,11 +23,10 @@ function Gallery({ match }: GalleryDetailProps) {
     if (!image.id) {
       dispatch(getGalleryDetail({ id: imageId }));
     }
-
     return () => {
       dispatch(setGalleryReset());
     };
-  }, [imageId]);
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current) return;
