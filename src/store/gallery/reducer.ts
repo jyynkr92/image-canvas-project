@@ -1,5 +1,11 @@
 import { GalleryActionTypes } from './actionTypes';
-import { DETAIL_GALLERY_SUCCESS, Gallery, SET_GALLERY_RESET, LIST_GALLERY_SUCCESS } from './types';
+import {
+  DETAIL_GALLERY_SUCCESS,
+  Gallery,
+  SET_GALLERY_RESET,
+  LIST_GALLERY_SUCCESS,
+  DETAIL_GALLERY_REQUEST,
+} from './types';
 
 const initialState: Gallery = {
   list: [],
@@ -19,6 +25,11 @@ const galleryReducer = (state = initialState, action: GalleryActionTypes) => {
       return {
         ...state,
         list: action.list,
+      };
+    case DETAIL_GALLERY_REQUEST:
+      return {
+        ...state,
+        image: initialState.image,
       };
     case DETAIL_GALLERY_SUCCESS:
       return {
