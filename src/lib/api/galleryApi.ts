@@ -6,6 +6,5 @@ const client = axios.create({
 
 export function getGalleryList() {
   const response = client.get('/list');
-  console.log(response);
   return response;
 }

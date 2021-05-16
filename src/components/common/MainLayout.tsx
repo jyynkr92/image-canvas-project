@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { Rootstate } from 'store';
 import Header from './Header';
+import Loading from './Loading';
 
 interface IProps {
   exact?: boolean;
@@ -9,12 +12,14 @@ interface IProps {
 }
 
 function MainLayout({ component: Component, ...rest }: IProps) {
+  const { loading } = useSelector((root: Rootstate) => root.common);
+
   return (
     <Route
       {...rest}
       render={(matchProps) => (
         <Fragment>
-          {/* {loading && <Loading />} */}
+          {loading && <Loading />}
           <Header />
           <Component {...matchProps} />
         </Fragment>

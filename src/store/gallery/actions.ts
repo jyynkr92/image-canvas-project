@@ -1,4 +1,4 @@
-import { DETAIL_GALLERY_REQUEST, LIST_GALLERY_REQUEST } from './types';
+import { DETAIL_GALLERY_REQUEST, LIST_GALLERY_REQUEST, SET_GALLERY_RESET } from './types';
 
 export const getGalleryList = () => ({
   type: LIST_GALLERY_REQUEST,
@@ -7,4 +7,8 @@ export const getGalleryList = () => ({
 export const getGalleryDetail = ({ id }: { id: string }) => ({
   type: DETAIL_GALLERY_REQUEST,
   id,
+});
+
+export const setGalleryReset = () => ({
+  type: SET_GALLERY_RESET,
 });

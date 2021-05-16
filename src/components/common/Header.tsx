@@ -1,7 +1,15 @@
-import React from 'react';
+import { push } from 'lib/browserHistory';
 
 function Header() {
-  return <header>this is header</header>;
+  const onHomeClick = () => {
+    push('/');
+  };
+
+  return (
+    <header>
+      <span onClick={onHomeClick}>HOME</span>
+    </header>
+  );
 }
 
 export default Header;

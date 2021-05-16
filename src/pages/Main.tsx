@@ -1,13 +1,33 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getGalleryList } from 'store/gallery/actions';
+import GalleryImage from 'components/gallery/GalleryImage';
+import { MouseEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Rootstate } from 'store';
+import { getGalleryDetail, getGalleryList, setGalleryReset } from 'store/gallery/actions';
 
 function Main() {
   const dispatch = useDispatch();
+  const { list } = useSelector((state: Rootstate) => state.gallery);
+
   useEffect(() => {
     dispatch(getGalleryList());
-  }, []);
-  return <div>Main</div>;
+
+    return () => {
+      dispatch(setGalleryReset());
+    };
+  }, [dispatch]);
+
+  const onImageClick = (e: MouseEvent<HTMLDivElement>) => {
+    const { id } = e.currentTarget;
+    id && dispatch(getGalleryDetail({ id }));
+  };
+
+  return (
+    <div className='main_wrapper'>
+      {list.map((data) => (
+        <GalleryImage image={data} onClick={onImageClick} key={data.id} />
+      ))}
+    </div>
+  );
 }
 
 export default Main;
