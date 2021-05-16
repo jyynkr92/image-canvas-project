@@ -59,6 +59,8 @@ function* detail({ id }: DetailGalleryRequestAction) {
       const image = data.filter((image) => image.id === id)[0];
 
       if (image) {
+        const imageIdx = data.findIndex((value) => value.id === image.id);
+
         yield put({
           type: DETAIL_GALLERY_SUCCESS,
           image: {
@@ -68,10 +70,10 @@ function* detail({ id }: DetailGalleryRequestAction) {
             height: image.height,
             url: image.url,
             downloadUrl: image.download_url,
+            next: data.length - 1 === imageIdx ? data[0].id : data[imageIdx + 1].id,
+            prev: imageIdx === 0 ? data[data.length - 1].id : data[imageIdx - 1].id,
           },
         });
-
-        push(`/gallery/${image.id}`);
       } else {
         throw new Error('no data');
       }

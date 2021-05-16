@@ -1,8 +1,9 @@
 import GalleryImage from 'components/gallery/GalleryImage';
+import { push } from 'lib/browserHistory';
 import { MouseEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Rootstate } from 'store';
-import { getGalleryDetail, getGalleryList, setGalleryReset } from 'store/gallery/actions';
+import { getGalleryList, setGalleryReset } from 'store/gallery/actions';
 
 function Main() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Main() {
 
   const onImageClick = (e: MouseEvent<HTMLDivElement>) => {
     const { id } = e.currentTarget;
-    id && dispatch(getGalleryDetail({ id }));
+    id && push(`/gallery/${id}`);
   };
 
   return (

@@ -10,6 +10,8 @@ export interface ImageInfo {
   height: number;
   url: string;
   downloadUrl: string;
+  next?: string;
+  prev?: string;
 }
 
 export const LIST_GALLERY_REQUEST = 'LIST_GALLERY_REQUEST';

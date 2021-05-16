@@ -43,3 +43,11 @@ header span {
   height: 250px;
   cursor: pointer;
 }
+
+.detail_wrapper {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
