@@ -7,8 +7,8 @@ import './App.css';
 function App() {
   return (
     <Switch>
-      <MainLayout exact path='/' component={Main} />
-      <MainLayout exact path='/gallery/:imageId' component={Gallery} />
+      <MainLayout exact path="/" component={Main} />
+      <MainLayout exact path="/gallery/:imageId" component={Gallery} />
     </Switch>
   );
 }

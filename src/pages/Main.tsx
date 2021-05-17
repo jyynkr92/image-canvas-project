@@ -23,7 +23,7 @@ function Main() {
   };
 
   return (
-    <div className='main_wrapper'>
+    <div className="main_wrapper">
       {list.map((data) => (
         <GalleryImage image={data} onClick={onImageClick} key={data.id} />
       ))}

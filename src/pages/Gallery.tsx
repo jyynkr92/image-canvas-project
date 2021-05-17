@@ -50,6 +50,60 @@ function Gallery({ match }: GalleryDetailProps) {
     img.src = image.downloadUrl;
   }, [image.id]);
 
+  const setZoomInAndOut = ({
+    mouseX,
+    mouseY,
+    canvasWidth,
+    canvasHeight,
+    isScrollUp,
+    image,
+    context,
+  }: {
+    mouseX: number;
+    mouseY: number;
+    canvasWidth: number;
+    canvasHeight: number;
+    isScrollUp: boolean;
+    image: string;
+    context: CanvasRenderingContext2D;
+  }) => {
+    const img = new Image();
+    img.onload = function () {
+      context.clearRect(0, 0, canvasWidth, canvasHeight);
+      context.translate(mouseX, mouseY);
+      const factor = Math.pow(scale, isScrollUp ? -1 : 1);
+      context.scale(factor, factor);
+      context.translate(-mouseX, -mouseY);
+      context.drawImage(img, 0, 0, width, height);
+    };
+    img.src = image;
+  };
+
+  const setRotate = ({
+    image,
+    context,
+    canvasWidth,
+    canvasHeight,
+    isScrollUp,
+  }: {
+    canvasWidth: number;
+    canvasHeight: number;
+    isScrollUp: boolean;
+    image: string;
+    context: CanvasRenderingContext2D;
+  }) => {
+    const img = new Image();
+
+    img.onload = function () {
+      context.clearRect(0, 0, canvasWidth, canvasHeight);
+      context.translate(width / 2, height / 2);
+      context.rotate(isScrollUp ? Math.PI / 2 : -Math.PI / 2);
+      context.translate(-width / 2, -height / 2);
+      context.drawImage(img, 0, 0, width, height);
+    };
+    img.src = image;
+  };
+
   const onWheel = (e: WheelEvent<HTMLDivElement>) => {
     if (e) {
       const isScrollUp = e.deltaY < 0;
@@ -61,31 +115,24 @@ function Gallery({ match }: GalleryDetailProps) {
       if (!context) return;
 
       if (leftClick) {
-        const img = new Image();
         const { x, y } = getMousePosition({ canvas, clientX: e.clientX, clientY: e.clientY });
-
-        img.onload = function () {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.translate(x, y);
-          const factor = Math.pow(scale, isScrollUp ? -1 : 1);
-          context.scale(factor, factor);
-          context.translate(-x, -y);
-          context.drawImage(img, 0, 0, width, height);
-        };
-
-        img.src = image.downloadUrl;
+        setZoomInAndOut({
+          mouseX: x,
+          mouseY: y,
+          canvasWidth: canvas.width,
+          canvasHeight: canvas.height,
+          isScrollUp,
+          image: image.downloadUrl,
+          context,
+        });
       } else if (rightClick) {
-        const img = new Image();
-
-        img.onload = function () {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.translate(width / 2, height / 2);
-          context.rotate(isScrollUp ? Math.PI / 2 : -Math.PI / 2);
-          context.translate(-width / 2, -height / 2);
-          context.drawImage(img, 0, 0, width, height);
-        };
-
-        img.src = image.downloadUrl;
+        setRotate({
+          image: image.downloadUrl,
+          canvasWidth: canvas.width,
+          canvasHeight: canvas.height,
+          isScrollUp,
+          context,
+        });
       } else {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.beginPath();
@@ -115,14 +162,13 @@ function Gallery({ match }: GalleryDetailProps) {
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
-    switch (e.button) {
+    const { button } = e;
+    switch (button) {
       case 0:
         setLeftClick(true);
-        console.log('Left button clicked.');
         break;
       case 2:
         setRightClick(true);
-        console.log('Right button clicked.');
         break;
     }
   };

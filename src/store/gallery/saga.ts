@@ -1,14 +1,14 @@
 import { all, takeLatest, put, call } from '@redux-saga/core/effects';
 import { getGalleryList } from 'lib/api/galleryApi';
 import { push } from 'lib/browserHistory';
-import { DetailGalleryRequestAction } from './actionTypes';
+import { DetailGalleryRequestAction } from 'store/gallery/actionTypes';
 import {
   DETAIL_GALLERY_REQUEST,
   DETAIL_GALLERY_SUCCESS,
   GALLERY_FAILURE,
   LIST_GALLERY_REQUEST,
   LIST_GALLERY_SUCCESS,
-} from './types';
+} from 'store/gallery/types';
 
 export interface GalleryResponseData {
   id: string;

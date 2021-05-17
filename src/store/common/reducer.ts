@@ -1,5 +1,5 @@
-import { CommonActionTypes } from './actionTypes';
-import { CANCEL_LOADING, Common, SET_LOADING } from './types';
+import { CommonActionTypes } from 'store/common/actionTypes';
+import { CANCEL_LOADING, Common, SET_LOADING } from 'store/common/types';
 
 const initialState: Common = {
   loading: false,

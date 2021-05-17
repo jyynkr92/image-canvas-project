@@ -1,4 +1,4 @@
-import { CANCEL_LOADING, SET_LOADING } from './types';
+import { CANCEL_LOADING, SET_LOADING } from 'store/common/types';
 
 export interface SetLoadingAction {
   type: typeof SET_LOADING;

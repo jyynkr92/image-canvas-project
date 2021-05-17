@@ -1,11 +1,11 @@
-import { GalleryActionTypes } from './actionTypes';
+import { GalleryActionTypes } from 'store/gallery/actionTypes';
 import {
   DETAIL_GALLERY_SUCCESS,
   Gallery,
   SET_GALLERY_RESET,
   LIST_GALLERY_SUCCESS,
   DETAIL_GALLERY_REQUEST,
-} from './types';
+} from 'store/gallery/types';
 
 const initialState: Gallery = {
   list: [],

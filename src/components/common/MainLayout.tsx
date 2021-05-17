@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { Rootstate } from 'store';
-import Header from './Header';
-import Loading from './Loading';
+import Header from 'components/common/Header';
+import Loading from 'components/common/Loading';
 
 interface IProps {
   exact?: boolean;
