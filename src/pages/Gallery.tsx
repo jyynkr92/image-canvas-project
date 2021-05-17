@@ -19,8 +19,8 @@ function Gallery({ match }: GalleryDetailProps) {
   const [rightClick, setRightClick] = useState(false);
   const [leftClick, setLeftClick] = useState(false);
   const scale = 1.1;
-  const width = 500;
-  const height = 500;
+  const width = 800;
+  const height = 800;
 
   useEffect(() => {
     return () => {
