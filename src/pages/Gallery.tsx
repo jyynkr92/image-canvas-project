@@ -96,6 +96,7 @@ function Gallery({ match }: GalleryDetailProps) {
 
     img.onload = function () {
       context.clearRect(0, 0, canvasWidth, canvasHeight);
+      context.translate(0, 0);
       context.translate(width / 2, height / 2);
       context.rotate(isScrollUp ? Math.PI / 2 : -Math.PI / 2);
       context.translate(-width / 2, -height / 2);
